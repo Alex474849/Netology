@@ -1,0 +1,52 @@
+create table artist (id serial primary key, alias varchar(50))
+insert into artist(alias) values ('mick_djager'), ('IOWA'), ('TumaniYO'), ('Miagy'), ('Andy_panda'),
+									('gayazov_brothers'), ('hamali_navai'), ('Niletto')
+select alias from artist where alias like '%  %'
+
+
+
+create table relation1 (id_artist integer references artist(id), id_album integer references album(id),
+						constraint pk primary key (id_artist, id_album))
+insert into relation1 (id_artist, id_album) values (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8)
+select * from relation1
+
+
+
+
+create table album (id integer primary key, name_album varchar(50) not null, year integer)
+insert into album(id, name_album, year) values (1, 'She"s the Boss', 1985), (2, 'Export', 2014), (3, 'FOG#ONE', 2018), (4, 'YAMAKASI', 2020),(5, 'King Kong', 2019), (6, 'Кредо', 2019), (7, 'JANAVI', 2018), (8, 'Криолит', 2022);
+
+select name_album, year from album where year = 2018
+
+
+create table track (id integer primary key, albums_id integer references album(id), track_name varchar(50) not null, year_track integer)
+insert into track (id, albums_id, track_name, year_track, duration) values (2, 1, 'Runing out of Luck', 1985, 261), (3, 2, 'Маршрутка', 2014, 190),
+(4, 3, 'Обратно', 2018, 149), (5, 3, 'Freedom', 2018, 133), (6, 3, 'Dance up', 2017, 255), (7, 4, 'Capitan', 2020, 200), (8, 4, 'minor', 2020, 190), (9, 5, 'Babylon', 2019, 177),
+(10, 6, 'Хедшот', 2016, 210), (11, 6, 'Малиновая лада', 2021, 220), (12, 7, 'Сон', 2015, 251), (13, 7, 'Девочка война', 2018, 226), (14, 8, 'ЛЮбимка', 2019, 220),
+(15, 8, 'Some one like you', 2020, 310)
+alter table track add column duration integer not null
+
+select track_name,duration from track order by duration desc limit(1)
+select track_name,duration from track where duration = 210
+select track_name from track where track_name like '%my%' # такого нет
+
+
+create table ralation2 (id integer primary key, id_track integer references track(id), id_collection integer references collection(id))
+insert into ralation2 (id, id_track, id_collection) values (1, 1, 1), (2, 2, 2), (3,3,3), (4,4,4), (5,5,5), (6,6,6), (7,7,7), (8,8,8), (9,9,9),
+(10, 10, null), (11, 11, null), (12, 12, null), (13,13, null), (14,14, null), (15, 15, null)
+select * from ralation2
+
+
+create table collection (id integer primary key,
+		name varchar(40) not null,
+		year varchar(40) not null
+		)
+insert into collection (id, name, year) values (1, 'Lonely at the top Runing out of Luck', 1985), (2, 'Маршрутка', 2014),
+(3, 'Обратно Обратно Девочка война', 2018), (4, 'Dance up', 2017), (5, 'Хедшот', 2016), (6, 'Babylon ЛЮбимка', 2019),
+(7, 'Some one like you minor Capitan', 2020), (8, 'Малиновая лада', 2021), (9, 'Сон', 2015)
+
+
+select * from collection where year between '2018' and '2020'
+
+
+.
