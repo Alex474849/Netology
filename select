@@ -1,7 +1,7 @@
 create table artist (id serial primary key, alias varchar(50))
 insert into artist(alias) values ('mick_djager'), ('IOWA'), ('TumaniYO'), ('Miagy'), ('Andy_panda'),
 									('gayazov_brothers'), ('hamali_navai'), ('Niletto')
-select alias from artist where alias like '%  %'
+select alias from artist where alias not like '%_%'
 
 
 
