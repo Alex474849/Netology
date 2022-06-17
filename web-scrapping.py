@@ -26,7 +26,7 @@ for article in articles:
     previews = [preview.text.strip() for preview in previews]
 
     for preview in previews:
-        links = article.find(class_="tm-article-snippet__title-link").attrs['href']
-        if preview in KEYWORDS:
+        if KEYWORDS in previews:
+            links = article.find(class_="tm-article-snippet__title-link").attrs['href']
             pprint(f'{preview} -------- {base_url}{links}')
 
