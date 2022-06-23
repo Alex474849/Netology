@@ -35,14 +35,14 @@ class Iter():
 
 def ge(*args, **kwargs):
     for item in args:
-        yield item
+        for z in item:
+            for q in z:
+                yield q
 
 
 
 for i in ge(nested_list):
-    for z in i:
-        for q in z:
-            print(q)
+    print(i)
 
 
 
