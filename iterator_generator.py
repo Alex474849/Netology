@@ -3,24 +3,46 @@ nested_list = [
     ['d', 'e', 'f', 'h', False],
     [1, 2, None],
 ]
-def lst0(lst):
-    for i in nested_list:
-        for z in i:
-           print(z)
 
 
-def lst1(lst):
+class Iter():
+    """
+    Iterator
+    """
 
-    result = []
-    for i in lst:
-        for z in i:
-            result.append(z)
-    return result
+    def __init__(self, n=1):
+        self.n = n
 
-def gen(lst):
-    pass
+    def __iter__(self):
+        self.cursor = 0
+        return self
+
+    def __next__(self):
+        self.cursor += 1
+        if self.cursor == self.n:
+            raise StopIteration
+        return nested_list
+
+
+# iter = Iter(2)
+# for i in iter:
+#     for z in i:
+#         for q in z:
+            # print(q)
+
+
+# gen
+
+def ge(*args, **kwargs):
+    for item in args:
+        yield item
 
 
 
-print(lst1(nested_list))
-print(lst0(nested_list))
+for i in ge(nested_list):
+    for z in i:
+        for q in z:
+            print(q)
+
+
+
