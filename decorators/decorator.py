@@ -34,6 +34,11 @@ def time1(path):
             result = old_function(*args, **kwargs)
             print(f'{result} was returned')
             print(f'Date = {datetime.now()}')
+            with open('text', 'w') as f:
+                f.write(f'Function {old_function.__name__} was called\n')
+                f.write(f'{result} was returned\n')
+                f.write(f'Date = {datetime.now()}\n')
+                f.write(f'Arguments: {args}\n')
             return result
 
         return wrap
