@@ -33,9 +33,14 @@ class Iter():
         return flat_lst
 
 
-iter = Iter(nested_list, 5)
+iter = Iter(nested_list, 4)
 for u in iter:
     print(u)
+    for z in u:
+        print(z)
+
+
+
 
 
 # def ge(*args, **kwargs):
@@ -48,6 +53,6 @@ for u in iter:
 #
 # for i in ge(nested_list):
 #     print(i)
-
-
-
+#
+#
+#
